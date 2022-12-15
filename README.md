@@ -3,7 +3,7 @@
 ### To start front on a Docker:
 1. Install npm (if needed)
 2. Run backend services
-3. Run command "docker-compose up" from project directory
-4. Try go to http://localhost:3000/?mov=102899
+3. Run command "docker-compose up --build" from project directory
+4. Go to http://localhost:3000/?mov=102899
 
 
