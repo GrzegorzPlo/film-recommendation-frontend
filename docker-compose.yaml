@@ -1,0 +1,9 @@
+version: "3"
+services:
+  film_recommendation_frontend:
+    build: .
+    container_name: film_recommendation_frontend_c
+    ports:
+      - '3000:3000'
+    stdin_open: true
+    tty: true
