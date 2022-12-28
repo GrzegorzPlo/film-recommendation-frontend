@@ -4,12 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ImageGallery from './components/gallery';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
-    <ImageGallery />
+    <Router>
+      <Routes>
+        <Route path="/recommendation" element={<ImageGallery />} />
+        <Route path="/login" element={<App />} />
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
 
