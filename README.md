@@ -5,6 +5,5 @@
 2. Run backend services
 3. Run command "docker-compose up --build" from project directory
 4. Go to http://localhost:3000/login
-5. To catch recommendation http://localhost:3000/recommendation?mov=102899
 
 
