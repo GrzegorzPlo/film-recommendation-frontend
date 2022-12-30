@@ -1,10 +1,9 @@
-import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Grid, Paper, Avatar, TextField, Button, Typography,Link } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
-function App() {
+function Registration() {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -18,10 +17,10 @@ function App() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:8081/api/auth/login', { "username": login, "password": password });
+      const response = await axios.post('http://localhost:8081/api/auth/register', { "username": login, "password": password });
       localStorage.setItem('authToken', response.data.accessToken);
       setIsLoading(false);
-      window.location.href = 'http://localhost:3000/recommendation/?mov=159117';
+      window.location.href = 'http://localhost:3000/login';
     } catch (error) {
       setError(error.response.data.message);
       setIsLoading(false);
@@ -34,21 +33,16 @@ return (
             <Paper elevation={10} style={paperStyle}>
                 <Grid align='center'>
                      <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
-                    <h2>Sign In</h2>
+                    <h2>Sign Up</h2>
                 </Grid>
                 <form onSubmit={handleSubmit}>
                 <TextField style = {{marginBottom: '10px'}} label='Login' placeholder='Enter login' variant="outlined" value={login} onInput={(event) => setLogin(event.target.value)} fullWidth required />
                 <TextField label='Password' placeholder='Enter password' type='password' variant="outlined" value={password} onInput={(event) => setPassword(event.target.value)} fullWidth required/>
                 <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth disabled={isLoading}>{isLoading ? 'Loading' : 'Sign in'}</Button>
                 </form>
-                <Typography > Do you have an account? <br />
-                     <Link href="#" >
-                        Sign Up 
-                </Link>
-                </Typography>
             </Paper>
         </Grid>
 );
 }
 
-export default App;
+export default Registration;
