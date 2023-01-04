@@ -19,6 +19,7 @@ export default function ImageGallery() {
       
     }
     };
+
       useEffect(() => {
               if (mov == 0){
                 fetch(`http://localhost:8084/api/movie/getMovies`,requestOptions)

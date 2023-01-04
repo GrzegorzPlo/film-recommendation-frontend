@@ -19,15 +19,13 @@ function Login() {
     try {
       const response = await axios.post('http://localhost:8081/api/auth/login', { "username": login, "password": password });
       localStorage.setItem('authToken', response.data.accessToken);
+
       localStorage.setItem('userName', login);
-      console.log(localStorage.getItem('userName'))
       setIsLoading(false);
 
         fetch(`http://localhost:8081/api/user/findByName/${login}`)
         .then(response => response.json())
         .then(data => {
-          // const results = data.results.filter(result => result.adult == false);
-          // console.log(results);
           if (data.movieId == 0){
             window.location.href = 'http://localhost:3000/recommendation/?mov=0'; //159117
           }
