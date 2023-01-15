@@ -19,6 +19,8 @@ function Login() {
     try {
       const response = await axios.post('http://localhost:8081/api/auth/login', { "username": login, "password": password });
       localStorage.setItem('authToken', response.data.accessToken);
+
+      localStorage.setItem('userName', login);
       setIsLoading(false);
 
         fetch(`http://localhost:8081/api/user/findByName/${login}`)

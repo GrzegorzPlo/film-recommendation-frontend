@@ -7,10 +7,19 @@ import ImageListItem from '@mui/material/ImageListItem';
 export default function ImageGallery() {
   const [movies, setMovies] = useState([]);
   const queryParams = new URLSearchParams(window.location.search)
-  const mov = queryParams.get("mov")
-  const token = localStorage.getItem("authToken")
+  const mov = queryParams.get("mov");
+  const token = localStorage.getItem("authToken");
   const userName = localStorage.getItem("userName");
-  const requestOptions = {method: 'get', headers: new Headers({ 'Authorization': 'Bearer '+ token})}
+  const requestOptions = {
+    method: 'get', 
+    headers: {
+      
+      'User': userName, 
+         'Authorization': ('Bearer '+ token),
+      
+    }
+    };
+
       useEffect(() => {
               if (mov == 0){
                 fetch(`http://localhost:8084/api/movie/getMovies`,requestOptions)
@@ -22,7 +31,6 @@ export default function ImageGallery() {
               fetch(`http://localhost:8082/api/movie/getRecommendationForMovie/${mov}`,requestOptions)
               .then(response => response.json())
               .then(data => {
-
                   setMovies(data.results);
                 })}
             
